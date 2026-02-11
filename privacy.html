@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezo - プライバシーポリシー</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #fafaf8;
+            padding: 0 16px;
+        }
+        .container { max-width: 720px; margin: 0 auto; padding: 40px 0 80px; }
+        h1 { font-size: 1.8rem; color: #2d5016; margin-bottom: 8px; }
+        h2 { font-size: 1.25rem; color: #3a6b1e; margin-top: 32px; margin-bottom: 12px; border-bottom: 2px solid #e8f0e0; padding-bottom: 6px; }
+        h3 { font-size: 1.05rem; color: #555; margin-top: 20px; margin-bottom: 8px; }
+        p, li { font-size: 0.95rem; margin-bottom: 8px; }
+        ul, ol { padding-left: 24px; margin-bottom: 12px; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem; }
+        th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; }
+        th { background: #f0f5eb; color: #3a6b1e; }
+        strong { color: #c0392b; }
+        .date { color: #888; font-size: 0.85rem; margin-bottom: 24px; }
+        .nav { text-align: center; margin-bottom: 32px; }
+        .nav a { color: #3a6b1e; text-decoration: none; margin: 0 12px; font-size: 0.9rem; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <a href="index.html">トップ</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="terms.html">利用規約</a>
+    </div>
+
+    <h1>Rezo プライバシーポリシー</h1>
+    <p class="date">最終更新日: 2026年2月8日</p>
+
+    <h2>はじめに</h2>
+    <p>Rezo（以下「本アプリ」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。本プライバシーポリシーは、本アプリがどのような情報を収集し、どのように利用・保護するかを説明するものです。</p>
+
+    <h2>1. 収集する情報</h2>
+
+    <h3>1.1 アカウント情報</h3>
+    <ul>
+        <li><strong>メールアドレス・パスワード</strong>: Firebase Authentication によるアカウント認証に使用</li>
+        <li><strong>Google アカウント情報</strong>: Google サインイン利用時に、表示名・メールアドレス・プロフィール画像を取得</li>
+        <li><strong>ユーザーID</strong>: Firebase が自動生成する匿名識別子</li>
+    </ul>
+
+    <h3>1.2 ユーザーが入力するデータ</h3>
+    <ul>
+        <li><strong>在庫データ</strong>: 食材名、数量、単位、カテゴリ、消費期限、保存場所</li>
+        <li><strong>買い物リスト</strong>: 購入予定の食材リスト</li>
+        <li><strong>調理履歴</strong>: レシピの閲覧・調理記録</li>
+        <li><strong>プロフィール情報</strong>: ニックネーム、食事モード設定</li>
+    </ul>
+
+    <h3>1.3 画像データ</h3>
+    <ul>
+        <li><strong>スキャン画像</strong>: カメラまたはギャラリーから取得した食材・レシート・パッケージの画像</li>
+        <li><strong>AI学習用画像</strong>: ユーザーが「AIの学習に貢献」に同意した場合のみ、Firebase Storage に保存</li>
+    </ul>
+
+    <h3>1.4 自動的に収集する情報</h3>
+    <ul>
+        <li><strong>デバイス情報</strong>: OS バージョン、デバイスモデル（クラッシュレポート・互換性の目的）</li>
+        <li><strong>利用状況</strong>: アプリの起動・機能利用の統計情報（Firebase Analytics が有効な場合）</li>
+        <li><strong>プッシュ通知トークン</strong>: Firebase Cloud Messaging による消費期限通知の送信に使用</li>
+    </ul>
+
+    <h3>1.5 広告に関する情報</h3>
+    <ul>
+        <li><strong>広告識別子</strong>: Google AdMob がパーソナライズ広告の表示のために収集する場合があります</li>
+        <li>広告に関するデータ収集は Google のプライバシーポリシーに準じます</li>
+    </ul>
+
+    <h2>2. 情報の利用目的</h2>
+    <p>収集した情報は、以下の目的でのみ利用します。</p>
+    <table>
+        <tr><th>目的</th><th>利用するデータ</th></tr>
+        <tr><td>アカウント認証・管理</td><td>メールアドレス、パスワード、Google アカウント情報</td></tr>
+        <tr><td>在庫管理・レシピ提案機能の提供</td><td>在庫データ、調理履歴</td></tr>
+        <tr><td>AI食材認識</td><td>スキャン画像（処理後は端末側で破棄）</td></tr>
+        <tr><td>AI認識精度の改善</td><td>AI学習用画像（オプトイン同意済みのもののみ）</td></tr>
+        <tr><td>消費期限通知の送信</td><td>プッシュ通知トークン、在庫の消費期限データ</td></tr>
+        <tr><td>買い物リスト機能の提供</td><td>買い物リストデータ</td></tr>
+        <tr><td>栄養バランスの表示</td><td>在庫データ、食事モード設定</td></tr>
+        <tr><td>広告の表示</td><td>広告識別子（Google AdMob 経由）</td></tr>
+        <tr><td>アプリの改善・不具合対応</td><td>デバイス情報、利用状況</td></tr>
+    </table>
+
+    <h2>3. 第三者サービスとのデータ共有</h2>
+    <p>本アプリは以下の第三者サービスを利用しており、それぞれのプライバシーポリシーが適用されます。</p>
+    <table>
+        <tr><th>サービス</th><th>用途</th><th>共有されるデータ</th></tr>
+        <tr><td>Firebase Authentication</td><td>ユーザー認証</td><td>メールアドレス、認証トークン</td></tr>
+        <tr><td>Cloud Firestore</td><td>データ保存</td><td>在庫・買い物リスト等のユーザーデータ</td></tr>
+        <tr><td>Firebase Storage</td><td>画像保存</td><td>AI学習用画像（同意済みのもののみ）</td></tr>
+        <tr><td>Firebase Cloud Messaging</td><td>プッシュ通知</td><td>デバイストークン</td></tr>
+        <tr><td>Google Gemini API</td><td>AI食材認識・レシピ提案</td><td>スキャン画像（Base64）、テキストプロンプト</td></tr>
+        <tr><td>Google ML Kit</td><td>端末内OCR</td><td>なし（端末内処理のため外部送信なし）</td></tr>
+        <tr><td>Google AdMob</td><td>広告配信</td><td>広告識別子、デバイス情報</td></tr>
+    </table>
+    <p><strong>重要</strong>: スキャン画像は AI 解析のために一時的に送信されますが、Google Gemini API 側でのデータ保持ポリシーは Google の利用規約に準じます。</p>
+
+    <h2>4. AI学習データの取り扱い</h2>
+    <h3>4.1 オプトイン方式</h3>
+    <p>AI学習データの収集は、ユーザーがスキャン結果確認時に「AIの学習に貢献」トグルを ON にした場合のみ行われます。トグルは各スキャン時に選択でき、いつでも OFF にできます。</p>
+    <h3>4.2 保存されるデータ</h3>
+    <ul>
+        <li>食材画像（リサイズ済み、最大1920×1920px）</li>
+        <li>食材ラベル（名前、カテゴリ、ユーザー修正の有無）</li>
+        <li>撮影元（カメラ/ギャラリー）</li>
+        <li>タイムスタンプ</li>
+        <li>ユーザーID（画像とアカウントの紐づけ管理用）</li>
+    </ul>
+    <h3>4.3 利用範囲</h3>
+    <p>収集したデータは、本アプリの食材認識AIの訓練にのみ使用します。第三者への販売・提供は行いません。</p>
+    <h3>4.4 削除権</h3>
+    <p>ユーザーは、モデル管理画面の「投稿画像」タブからいつでも自分が投稿した学習用画像を削除できます。アカウント削除時には、当該ユーザーの学習用画像もすべて削除されます。</p>
+
+    <h2>5. データの保存と管理</h2>
+    <h3>5.1 保存場所</h3>
+    <p>ユーザーデータは Google Cloud（Firebase）の asia-northeast1（東京）リージョンに保存されます。</p>
+    <h3>5.2 セキュリティ</h3>
+    <ul>
+        <li>Firebase Security Rules により、各ユーザーは自身のデータにのみアクセスできます。</li>
+        <li>通信は TLS/SSL で暗号化されています。</li>
+        <li>パスワードは Firebase Authentication によりハッシュ化されて保存されます。</li>
+    </ul>
+    <h3>5.3 保存期間</h3>
+    <ul>
+        <li>アカウントが有効な間、ユーザーデータは保持されます。</li>
+        <li>アカウント削除後、ユーザーデータは30日以内に完全削除されます。</li>
+    </ul>
+
+    <h2>6. ユーザーの権利</h2>
+    <ol>
+        <li><strong>アクセス権</strong>: 自身のデータの閲覧（アプリ内の各画面から確認可能）</li>
+        <li><strong>修正権</strong>: 在庫データ・プロフィール情報の編集</li>
+        <li><strong>削除権</strong>: アカウントおよび関連データの削除（プロフィール画面から実行可能）</li>
+        <li><strong>AI学習データの削除</strong>: 投稿した学習用画像の個別削除</li>
+        <li><strong>オプトアウト権</strong>: AI学習データ貢献の拒否（トグルを OFF にする）</li>
+        <li><strong>通知の停止</strong>: 端末の設定からプッシュ通知を無効化</li>
+    </ol>
+
+    <h2>7. 子どもの利用</h2>
+    <p>本アプリは13歳未満の子どもを対象としていません。13歳未満の方が個人情報を提供していることが判明した場合、速やかに当該データを削除します。</p>
+
+    <h2>8. カメラ・マイク・ストレージの権限</h2>
+    <table>
+        <tr><th>権限</th><th>用途</th><th>必須/任意</th></tr>
+        <tr><td>カメラ</td><td>食材・レシートの撮影</td><td>任意</td></tr>
+        <tr><td>マイク</td><td>音声入力による食材登録</td><td>任意</td></tr>
+        <tr><td>写真ライブラリ</td><td>ギャラリーからの画像選択</td><td>任意</td></tr>
+        <tr><td>通知</td><td>消費期限リマインダー</td><td>任意</td></tr>
+    </table>
+    <p>権限を付与しない場合、該当機能は利用できませんが、他の機能には影響しません。</p>
+
+    <h2>9. Cookie とトラッキング</h2>
+    <p>本アプリのモバイル版では Cookie を使用しません。</p>
+
+    <h2>10. ポリシーの変更</h2>
+    <p>本プライバシーポリシーは、法令の変更やサービスの更新に伴い変更される場合があります。重要な変更がある場合は、アプリ内通知またはメールでお知らせします。</p>
+
+    <h2>11. お問い合わせ</h2>
+    <p>プライバシーに関するご質問・ご要望は、以下までご連絡ください。</p>
+    <ul>
+        <li>メール: orubisu.io3@gmail.com</li>
+        <li>アプリ内: プロフィール画面 → お問い合わせ</li>
+    </ul>
+
+    <h2>12. 準拠法</h2>
+    <p>本プライバシーポリシーは日本法に準拠します。</p>
+</div>
+</body>
+</html>
