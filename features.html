@@ -103,6 +103,41 @@
             box-shadow: 0 6px 28px rgba(0,0,0,0.2);
         }
 
+        /* ===== Floating Download Button ===== */
+        .fab-download {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: linear-gradient(135deg, #2d5016, #4a8c2a);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 22px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(45,80,22,0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 999;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .fab-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(45,80,22,0.5);
+        }
+
+        @media (max-width: 480px) {
+            .fab-download {
+                bottom: 20px;
+                right: 16px;
+                padding: 12px 18px;
+                font-size: 0.88rem;
+            }
+        }
+
         /* ===== Section Common ===== */
         section {
             padding: 72px 24px;
@@ -733,7 +768,7 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta-section">
+    <section class="cta-section" id="download">
         <h2>今すぐ始めよう</h2>
         <p>無料でダウンロードして、毎日の食生活をもっと楽しく、もっとスマートに。</p>
         <div class="store-buttons">
@@ -745,6 +780,11 @@
             </a>
         </div>
     </section>
+
+    <!-- Floating Download Button -->
+    <a href="#download" class="fab-download">
+        📥 ダウンロード
+    </a>
 
     <!-- Footer -->
     <footer>
