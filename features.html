@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rezo（レゾ）- AIで冷蔵庫の食材管理、レシピ提案、買い物リスト自動生成。毎日の献立の悩みを解決するスマートクッキングナビ。">
+    <meta name="keywords" content="Rezo, レゾ, 冷蔵庫管理, 食材管理, AI, レシピ提案, 買い物リスト, 献立, フードロス">
+    <meta property="og:title" content="Rezo - Cooking Navi（冷蔵庫の預言者）">
+    <meta property="og:description" content="AIで食材管理からレシピ提案まで。毎日の「今日の晩ご飯どうしよう？」を解決します。">
+    <meta property="og:type" content="website">
+    <title>Rezo - Cooking Navi | 機能紹介</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #fafaf8;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            background: linear-gradient(135deg, #2d5016 0%, #4a8c2a 50%, #6db33f 100%);
+            color: #fff;
+            text-align: center;
+            padding: 80px 24px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero .logo {
+            font-size: 4rem;
+            margin-bottom: 8px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero .app-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .hero .tagline {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 32px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .cta-btn {
+            display: inline-block;
+            background: #fff;
+            color: #2d5016;
+            padding: 14px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .hero .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(0,0,0,0.2);
+        }
+
+        /* ===== Section Common ===== */
+        section {
+            padding: 72px 24px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #2d5016;
+            margin-bottom: 48px;
+        }
+
+        /* ===== Features Grid ===== */
+        .features {
+            background: #fff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #f8faf5;
+            border: 1px solid #e8eddf;
+            border-radius: 16px;
+            padding: 32px 28px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(45,80,22,0.1);
+            border-color: #c5d6a8;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 0.92rem;
+            color: #555;
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            font-size: 0.88rem;
+            color: #666;
+            padding: 3px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4a8c2a;
+            font-weight: 700;
+        }
+
+        /* ===== AI Section ===== */
+        .ai-section {
+            background: linear-gradient(180deg, #f0f5eb 0%, #fafaf8 100%);
+        }
+
+        .ai-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .ai-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid #e8eddf;
+        }
+
+        .ai-step-number {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2d5016, #4a8c2a);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .ai-step h4 {
+            font-size: 1.1rem;
+            color: #2d5016;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .ai-step p {
+            font-size: 0.92rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* ===== Recommend Section ===== */
+        .recommend {
+            background: #fff;
+        }
+
+        .recommend-list {
+            max-width: 640px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        .recommend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8faf5;
+            border: 1px solid #e8eddf;
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .recommend-item .emoji {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        /* ===== How to Use ===== */
+        .howto {
+            background: #fafaf8;
+        }
+
+        .howto-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .howto-step {
+            text-align: center;
+            padding: 28px 20px;
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid #e8eddf;
+        }
+
+        .howto-step .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #e8f0dc;
+            color: #2d5016;
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .howto-step h4 {
+            font-size: 1rem;
+            color: #2d5016;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .howto-step p {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* ===== Pricing ===== */
+        .pricing {
+            background: #fff;
+        }
+
+        .pricing-info {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pricing-info ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 28px;
+        }
+
+        .pricing-info li {
+            font-size: 0.95rem;
+            color: #555;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0ec;
+        }
+
+        .pricing-info li:last-child {
+            border-bottom: none;
+        }
+
+        /* ===== Privacy ===== */
+        .privacy-section {
+            background: #f0f5eb;
+        }
+
+        .privacy-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .privacy-card {
+            flex: 1;
+            min-width: 220px;
+            max-width: 260px;
+            text-align: center;
+            background: #fff;
+            border-radius: 14px;
+            padding: 24px 20px;
+            border: 1px solid #e8eddf;
+        }
+
+        .privacy-card .emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .privacy-card h4 {
+            font-size: 0.95rem;
+            color: #2d5016;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .privacy-card p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* ===== CTA Section ===== */
+        .cta-section {
+            background: linear-gradient(135deg, #2d5016 0%, #4a8c2a 50%, #6db33f 100%);
+            color: #fff;
+            text-align: center;
+            padding: 64px 24px;
+        }
+
+        .cta-section h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 28px;
+        }
+
+        .store-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .store-btn.apple {
+            background: #fff;
+            color: #2d5016;
+        }
+
+        .store-btn.google {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .store-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: #1a2e0a;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 32px 24px;
+        }
+
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        footer .copyright {
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px 48px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 0.92rem;
+            }
+
+            section {
+                padding: 56px 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .ai-step {
+                padding: 20px;
+            }
+
+            .howto-steps {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .howto-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .privacy-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .privacy-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="logo">🥬</div>
+            <h1>Rezo（レゾ）</h1>
+            <p class="app-subtitle">Cooking Navi ― 冷蔵庫の預言者</p>
+            <p class="tagline">
+                毎日の「冷蔵庫に何があったっけ？」「今日の晩ご飯どうしよう？」を解決する、<br>
+                AI搭載の食材管理アプリです。
+            </p>
+            <a href="index.html" class="cta-btn">🥗 アプリを見る</a>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="features">
+        <h2 class="section-title">Rezo でできること</h2>
+        <div class="features-grid">
+
+            <!-- 1. AI食材登録 -->
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>AIで食材を一瞬登録</h3>
+                <p>カメラで食材を撮影するだけで、AIが自動認識。名前・カテゴリ・消費期限の候補まで提案します。レシートを撮影すれば、購入した食材をまとめて一括登録。</p>
+                <ul class="feature-list">
+                    <li>食材をカメラでスキャン → AI が自動で認識・登録</li>
+                    <li>レシート撮影 → 購入品を一括追加</li>
+                    <li>音声入力にも対応 →「にんじん3本」と話すだけ</li>
+                    <li>バーコードスキャンで商品を即座に特定</li>
+                </ul>
+            </div>
+
+            <!-- 2. 見える化 -->
+            <div class="feature-card">
+                <div class="feature-icon">🧊</div>
+                <h3>冷蔵庫の中身を見える化</h3>
+                <p>冷蔵庫・冷凍庫・パントリーなど保存場所ごとに食材を管理。カテゴリ別の表示や検索で、欲しい食材がすぐ見つかります。</p>
+                <ul class="feature-list">
+                    <li>保存場所ごとに分類（冷蔵・冷凍・常温・パントリー）</li>
+                    <li>カテゴリ別表示（野菜・肉・魚・乳製品など）</li>
+                    <li>数量・単位の管理で在庫を正確に把握</li>
+                </ul>
+            </div>
+
+            <!-- 3. 消費期限 -->
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3>消費期限を逃さない</h3>
+                <p>消費期限が近い食材は自動でお知らせ。フードロスを減らして、家計にも環境にもやさしい食生活を。</p>
+                <ul class="feature-list">
+                    <li>消費期限の通知（1日前・3日前・7日前など設定可能）</li>
+                    <li>期限切れ間近の食材を一目で確認</li>
+                    <li>色分け表示で緊急度がすぐわかる</li>
+                </ul>
+            </div>
+
+            <!-- 4. AIレシピ提案 -->
+            <div class="feature-card">
+                <div class="feature-icon">🍳</div>
+                <h3>AIがレシピを提案</h3>
+                <p>冷蔵庫にある食材から、Google Gemini AI がぴったりのレシピを提案。「あるもので何が作れる？」にAIが即座に回答します。</p>
+                <ul class="feature-list">
+                    <li>在庫食材ベースのレシピ提案</li>
+                    <li>調理時間・難易度・ジャンルでフィルタ</li>
+                    <li>栄養バランスの表示</li>
+                    <li>YouTube のクッキング動画とも連携</li>
+                    <li>家族のアレルギー・好き嫌いを考慮した提案</li>
+                </ul>
+            </div>
+
+            <!-- 5. 買い物リスト -->
+            <div class="feature-card">
+                <div class="feature-icon">🛒</div>
+                <h3>買い物リストを自動生成</h3>
+                <p>在庫が少なくなった食材や、レシピに必要な材料を自動で買い物リストに追加。お店での買い忘れゼロへ。</p>
+                <ul class="feature-list">
+                    <li>不足食材の自動提案</li>
+                    <li>レシピから必要な材料をワンタップ追加</li>
+                    <li>チェックリスト形式で買い物中も使いやすい</li>
+                </ul>
+            </div>
+
+            <!-- 6. 週間献立プラン -->
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>週間献立プラン</h3>
+                <p>1週間分の献立をAIが自動生成。栄養バランスを考慮した食事プランで、毎日の献立の悩みから解放されます。</p>
+                <ul class="feature-list">
+                    <li>AIによる1週間の自動献立作成</li>
+                    <li>家族構成・食事モードに応じたカスタマイズ</li>
+                    <li>献立から買い物リストを自動生成</li>
+                </ul>
+            </div>
+
+            <!-- 7. 家族 -->
+            <div class="feature-card">
+                <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                <h3>家族みんなで使える</h3>
+                <p>家族メンバーごとのアレルギー情報や苦手な食材を登録可能。レシピ提案の際に自動で考慮されるので、安心して食事を楽しめます。</p>
+                <ul class="feature-list">
+                    <li>家族ごとのアレルギー・苦手食材を管理</li>
+                    <li>レシピ提案にアレルギー情報を自動反映</li>
+                    <li>家族全員が安心して食べられるメニュー</li>
+                </ul>
+            </div>
+
+            <!-- 8. プライバシー -->
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>プライバシーを大切に</h3>
+                <p>大切な食生活データを安全に守ります。</p>
+                <ul class="feature-list">
+                    <li>Firebaseサーバーに暗号化保存</li>
+                    <li>AI学習への画像提供は完全任意（オプトイン方式）</li>
+                    <li>アカウント削除でデータも完全消去</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- AI Section -->
+    <section class="ai-section">
+        <h2 class="section-title">🤖 AIがあなたの食生活をサポート</h2>
+        <div class="ai-steps">
+            <div class="ai-step">
+                <div class="ai-step-number">1</div>
+                <div>
+                    <h4>📸 撮るだけで食材登録</h4>
+                    <p>冷蔵庫の中身やレシートをカメラで撮影 → AIが食材名・カテゴリ・消費期限を自動認識して登録。手入力の手間を大幅に削減します。</p>
+                </div>
+            </div>
+            <div class="ai-step">
+                <div class="ai-step-number">2</div>
+                <div>
+                    <h4>🍽️ あるもので献立提案</h4>
+                    <p>「冷蔵庫にあるもので何が作れる？」→ Google Gemini AI が在庫食材に合ったレシピを即座に提案。栄養バランスやアレルギーも考慮します。</p>
+                </div>
+            </div>
+            <div class="ai-step">
+                <div class="ai-step-number">3</div>
+                <div>
+                    <h4>📋 1週間の献立を自動作成</h4>
+                    <p>家族構成や食事モードを設定するだけで、AIが1週間分の献立を自動生成。必要な買い物リストもワンタップで作成できます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- こんな方におすすめ -->
+    <section class="recommend">
+        <h2 class="section-title">こんな方におすすめ</h2>
+        <div class="recommend-list">
+            <div class="recommend-item">
+                <span class="emoji">🤔</span>
+                <span>冷蔵庫の中身を把握しきれない方</span>
+            </div>
+            <div class="recommend-item">
+                <span class="emoji">😥</span>
+                <span>食材を腐らせてしまいがちな方</span>
+            </div>
+            <div class="recommend-item">
+                <span class="emoji">🍽️</span>
+                <span>毎日の献立に悩んでいる方</span>
+            </div>
+            <div class="recommend-item">
+                <span class="emoji">🌱</span>
+                <span>フードロスを減らしたい方</span>
+            </div>
+            <div class="recommend-item">
+                <span class="emoji">🛍️</span>
+                <span>買い物の効率を上げたい方</span>
+            </div>
+            <div class="recommend-item">
+                <span class="emoji">💪</span>
+                <span>家族の栄養管理をしたい方</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使い方 -->
+    <section class="howto">
+        <h2 class="section-title">使い方</h2>
+        <div class="howto-steps">
+            <div class="howto-step">
+                <div class="step-num">1</div>
+                <h4>アプリをダウンロード</h4>
+                <p>App Store または Google Play から Rezo をダウンロード。メールまたはGoogleアカウントで登録します。</p>
+            </div>
+            <div class="howto-step">
+                <div class="step-num">2</div>
+                <h4>食材を登録</h4>
+                <p>カメラ・レシート・音声・バーコードで食材を登録。AIが自動認識するので入力は最小限。</p>
+            </div>
+            <div class="howto-step">
+                <div class="step-num">3</div>
+                <h4>AIにレシピを聞く</h4>
+                <p>在庫食材からAIがおすすめレシピを提案。調理時間やジャンルでフィルタもできます。</p>
+            </div>
+            <div class="howto-step">
+                <div class="step-num">4</div>
+                <h4>買い物リストで楽々</h4>
+                <p>不足食材は自動でリスト化。お店でチェックしながら効率よく買い物できます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ご利用について -->
+    <section class="pricing">
+        <h2 class="section-title">ご利用について</h2>
+        <div class="pricing-info">
+            <ul>
+                <li>✅ 基本機能は<strong>無料</strong>でお使いいただけます</li>
+                <li>⭐ 一部のプレミアム機能はサブスクリプション（Pro）でご利用いただけます</li>
+                <li>📧 アカウント登録にはメールアドレスまたはGoogleアカウントが必要です</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>今すぐ始めよう</h2>
+        <p>無料でダウンロードして、毎日の食生活をもっと楽しく、もっとスマートに。</p>
+        <div class="store-buttons">
+            <a href="https://apps.apple.com/gh/app/rezo-cooking-navi/id6759208721" class="store-btn apple">🍎 App Store</a>
+            <a href="http://play.google.com/store/apps/details?id=com.rezocook.app&hl=ja" class="store-btn google">▶ Google Play</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="terms.html">利用規約</a>
+            <a href="mailto:orubisu.io3@gmail.com">お問い合わせ</a>
+        </div>
+        <p class="copyright">&copy; 2026 Rezo. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
