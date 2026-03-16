@@ -107,7 +107,7 @@
         .fab-download {
             position: fixed;
             bottom: 28px;
-            right: 28px;
+            left: 28px;
             background: linear-gradient(135deg, #2d5016, #4a8c2a);
             color: #fff;
             text-decoration: none;
@@ -119,7 +119,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            z-index: 999;
+            z-index: 9999;
             transition: all 0.3s;
             white-space: nowrap;
         }
@@ -132,7 +132,7 @@
         @media (max-width: 480px) {
             .fab-download {
                 bottom: 20px;
-                right: 16px;
+                left: 16px;
                 padding: 12px 18px;
                 font-size: 0.88rem;
             }
@@ -446,19 +446,46 @@
         }
 
         .store-badge {
-            display: inline-block;
-            transition: all 0.3s;
-        }
-
-        .store-badge img {
-            height: 52px;
-            width: auto;
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            min-width: 155px;
+            transition: opacity 0.2s, transform 0.2s;
         }
 
         .store-badge:hover {
+            opacity: 0.82;
             transform: translateY(-2px);
-            filter: brightness(1.05);
+        }
+
+        .store-badge .b-icon {
+            font-size: 1.9rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .store-badge .b-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .store-badge .b-sub {
+            font-size: 0.62rem;
+            letter-spacing: 0.04em;
+            opacity: 0.9;
+            line-height: 1.2;
+        }
+
+        .store-badge .b-main {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
         }
 
         /* ===== Footer ===== */
@@ -773,10 +800,18 @@
         <p>無料でダウンロードして、毎日の食生活をもっと楽しく、もっとスマートに。</p>
         <div class="store-buttons">
             <a href="https://apps.apple.com/gh/app/rezo-cooking-navi/id6759208721" class="store-badge">
-                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="Download on the App Store">
+                <span class="b-icon"></span>
+                <span class="b-text">
+                    <span class="b-sub">Download on the</span>
+                    <span class="b-main">App Store</span>
+                </span>
             </a>
             <a href="http://play.google.com/store/apps/details?id=com.rezocook.app&hl=ja" class="store-badge">
-                <img src="https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Play で手に入れよう">
+                <span class="b-icon">▶</span>
+                <span class="b-text">
+                    <span class="b-sub">GET IT ON</span>
+                    <span class="b-main">Google Play</span>
+                </span>
             </a>
         </div>
     </section>
