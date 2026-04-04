@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tsugutoshi.github.io/rezo-site/sitemap.xml
