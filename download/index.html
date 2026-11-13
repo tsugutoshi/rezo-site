@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="iPhone・iPad・Android 向けの Rezo（レゾ）をダウンロードできます。">
+    <title>Rezo（レゾ）をダウンロード</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: grid;
+            place-items: center;
+            padding: 1.25rem;
+            background: #f5f7f1;
+            color: #263e29;
+            font: 1rem/1.6 system-ui, sans-serif;
+        }
+
+        main {
+            box-sizing: border-box;
+            width: min(100%, 26rem);
+            padding: clamp(1rem, 6vw, 2.5rem);
+            border: 1px solid #dce5d8;
+            border-radius: 1.25rem;
+            background: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(1.35rem, 5.5vw, 1.8rem);
+            line-height: 1.35;
+        }
+
+        p {
+            margin: 0.75rem 0 1.5rem;
+        }
+
+        nav {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        a {
+            padding: 0.75rem;
+            border: 1px solid #9cb29e;
+            border-radius: 0.75rem;
+            color: #263e29;
+            font-weight: 650;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background: #edf3eb;
+        }
+
+        a:focus-visible {
+            outline: 2px solid #263e29;
+            outline-offset: 3px;
+        }
+
+        a small {
+            display: block;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Rezo（レゾ）をダウンロード</h1>
+        <p>お使いの端末に合ったストアを選んでください。</p>
+        <nav aria-label="ダウンロード先">
+            <a id="app-store" href="https://apps.apple.com/jp/app/rezo-%E3%83%AC%E3%82%BE-%E5%86%B7%E8%94%B5%E5%BA%AB%E7%AE%A1%E7%90%86%E3%81%A8%E3%83%81%E3%83%A9%E3%82%B7%E7%AF%80%E7%B4%84-ai%E7%8C%AE%E7%AB%8B%E3%83%AC%E3%82%B7%E3%83%94/id6759208721">
+                App Store で開く
+                <small>iPhone・iPad</small>
+            </a>
+            <a id="google-play" href="https://play.google.com/store/apps/details?id=com.rezocook.app&amp;hl=ja">
+                Google Play で開く
+                <small>Android</small>
+            </a>
+        </nav>
+    </main>
+    <script>
+        const userAgent = navigator.userAgent;
+        const platform = navigator.userAgentData?.platform;
+        const isAndroid = platform === 'Android' || /\bAndroid\b/i.test(userAgent);
+
+        // デスクトップ表示の iPad は Mac として識別される場合がある。
+        const isIPadInDesktopMode = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+        const isAppleMobile = /\b(iPhone|iPad|iPod)\b/i.test(userAgent) || isIPadInDesktopMode;
+
+        if (isAndroid || isAppleMobile) {
+            const storeLink = document.getElementById(isAndroid ? 'google-play' : 'app-store');
+            document.querySelector('p').textContent = 'ストアを開いています。開かない場合は、下のリンクを押してください。';
+            window.location.replace(storeLink.href);
+        }
+    </script>
+</body>
+</html>
