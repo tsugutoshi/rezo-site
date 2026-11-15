@@ -28,7 +28,7 @@ img { display: block; max-width: 100%; }
 .site-header { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid #ecece3; background: var(--paper); }
 .header-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--green-dark); text-decoration: none; font: 750 33px/1 "Trebuchet MS", sans-serif; letter-spacing: -.065em; }
-.brand-mark { display: grid; width: 37px; height: 37px; place-items: center; border-radius: 12px; color: #fff; background: var(--green); font-size: 19px; }
+.brand-mark { display: block; flex: none; width: 37px; height: 37px; border-radius: 10px; }
 .brand-period { color: #688b57; }
 .site-nav { display: flex; gap: clamp(20px, 3.3vw, 49px); align-items: center; }
 .site-nav a, .site-footer nav a { padding-block: 8px; text-decoration: none; color: var(--muted); font-size: .875rem; font-weight: 700; }
